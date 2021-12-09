@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Services\UploadFiles;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 
@@ -42,6 +43,11 @@ class User
    * @ORM\Column(type="string", length=255)
    */
   private string $email;
+
+  /**
+   * @ORM\Column(type="string", length=255)
+   */
+  private string $imgProfile;
 
   /**
    * @ORM\Column(type="datetime", nullable=true)
@@ -121,6 +127,31 @@ class User
   public function setBirthDate(DateTime $birthDate): self
   {
     $this->birthDate = $birthDate;
+
+    return $this;
+  }
+
+  public function setImgName($img)
+  {
+
+    $this->img = $img;
+
+    $nomImg = new UploadFiles($img);
+    $nom = $nomImg->getName();
+
+    return $this->setImgProfile($nom);
+  }
+
+
+  public function getImgProfile()
+  {
+    return $this->imgProfile;
+  }
+
+
+  public function setImgProfile($img)
+  {
+    $this->imgProfile = $img;
 
     return $this;
   }
