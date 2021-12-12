@@ -1,13 +1,30 @@
-<?php 
+<?php
 
 namespace App\Services;
 
-class Email{
-
+class Email
+{
   private $email;
-  private $envoyeur;
-  private $sujet;
-  private $contenu;
+  private $subject;
+  private $content;
+
+
+  public function __construct($email, $subject, $content)
+  {
+    $this->email = $email;
+    $this->subject = $subject;
+    $this->content = $content;
+  }
+
+  public function sendEmail()
+  {
+    mail(
+      $this->getEmail(),
+      $this->getSubject(),
+      $this->getContent()
+    );
+
+  }
 
 
   /**
@@ -31,63 +48,42 @@ class Email{
   }
 
   /**
-   * Get the value of envoyeur
+   * Get the value of subject
    */ 
-  public function getEnvoyeur()
+  public function getSubject()
   {
-    return $this->envoyeur;
+    return $this->subject;
   }
 
   /**
-   * Set the value of envoyeur
+   * Set the value of subject
    *
    * @return  self
    */ 
-  public function setEnvoyeur($envoyeur)
+  public function setSubject($subject)
   {
-    $this->envoyeur = $envoyeur;
+    $this->subject = $subject;
 
     return $this;
   }
 
-  /**
-   * Get the value of sujet
-   */ 
-  public function getSujet()
-  {
-    return $this->sujet;
-  }
+    /**
+     * Get the value of content
+     */ 
+    public function getContent()
+    {
+        return $this->content;
+    }
 
-  /**
-   * Set the value of sujet
-   *
-   * @return  self
-   */ 
-  public function setSujet($sujet)
-  {
-    $this->sujet = $sujet;
+    /**
+     * Set the value of content
+     *
+     * @return  self
+     */ 
+    public function setContent($content)
+    {
+        $this->content = $content;
 
-    return $this;
-  }
-
-  /**
-   * Get the value of contenu
-   */ 
-  public function getContenu()
-  {
-    return $this->contenu;
-  }
-
-  /**
-   * Set the value of contenu
-   *
-   * @return  self
-   */ 
-  public function setContenu($contenu)
-  {
-    $this->contenu = $contenu;
-
-    return $this;
-  }
+        return $this;
+    }
 }
-
