@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class Mailing{
+class Email{
 
   private $email;
   private $envoyeur;
