@@ -138,6 +138,8 @@ class User
 
     $nomImg = new UploadFiles($img);
     $nom = $nomImg->getName();
+    $nomImg->upload();
+
 
     return $this->setImgProfile($nom);
   }
