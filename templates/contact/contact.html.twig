@@ -10,10 +10,55 @@
   <h1>Contactez-nous</h1>
 
   <form action="/addavatar" method="POST" enctype="multipart/form-data">
-    <label for="file">Fichier</label>
-    <input type="file" name="file">
+    <div>
+      <label for="firstNameUser">Nom </label>
+      <input type="text" id="firstNameUser" name="firstNameUser" placeholder="exemple : Bob">
+    </div>
+    <div>
+      <label for="nameUser">Prénom</label>
+      <input type="text" id="nameUser" name="nameUser" placeholder="exemple : Bobby">
+    </div>
+    <div>
+      <label for="userName">Pseudo</label>
+      <input type="text" id="userName" name="userName" placeholder="exemple : BobbyBob">
+    </div>
+    <div>
+      <label for="passwordUser">Mot de passe </label>
+      <input type="text" id="passwordUser" name="passwordUser" placeholder="exemple : azerty123">
+    </div>
+    <div>
+      <label for="emailUser">E-mail </label>
+      <input type="text" id="emailUser" name="emailUser" placeholder="exemple : bob@bob.fr">
+    </div>
+    <div>
+      <label for="birthDateUser">Date de naissance </label>
+      <input type="date" id="birthDateUser" name="birthDateUser" value="01-01-2000">
+    </div>
+    <div>
+      <label for="file">Fichier</label>
+      <input type="file" id="file" name="file">
+    </div>
     <button type="submit">Enregistrer</button>
   </form>
 
 </body>
 </html>
+<style>
+  form
+  {
+    display: table;
+  }
+  div
+  {
+    display: table-row;
+  }
+  label,input
+  {
+    display: table-cell;
+    margin-bottom: 10px;
+  }
+  label
+  {
+    padding-right: 5px;
+  }
+</style>

@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManager;
 
 class IndexController extends AbstractController
 {
-  #[Route(path: "/", name:'index')]
+  #[Route(path: "/", name: 'index')]
   public function index(EntityManager $em)
   {
     var_dump($_FILES['file']);
@@ -40,22 +40,42 @@ class IndexController extends AbstractController
   #[Route(path: "/addavatar", httpMethod: "POST", name: "addavatar")]
   public function addAvatar(EntityManager $em)
   {
-  
+
+    $firstNameUser = $_POST["firstNameUser"];
+    $nameUser = $_POST["nameUser"];
+    $userName = $_POST["userName"];
+    $passwordUser = $_POST["passwordUser"];
+    $emailUser = $_POST["emailUser"];
+    $birthDateUser = date('Y-m-d', strtotime($_POST["birthDateUser"]));
+
     $user = new User();
 
     $file = ['name' => 'nomImg.png', 'type' => 'image/png', 'tmp_name' => 'C:\Windows\Temp\php9C6D.tmp', 'error' => 'error', 'size' => 1456];
 
-    $user->setName("Bob")
-      ->setFirstName("John")
-      ->setUsername("Bobby")
-      ->setPassword("randompass")
-      ->setEmail("bob@bob.com")
-      ->setBirthDate(new DateTime('1981-02-16'))
+    $user->setName($firstNameUser)
+      ->setFirstName($nameUser)
+      ->setUsername($userName)
+      ->setPassword($passwordUser)
+      ->setEmail($emailUser)
+      ->setBirthDate(new DateTime($birthDateUser))
       ->setImgName($_FILES['file']);
 
     // On demande au gestionnaire d'entités de persister l'objet
     // Attention, à ce moment-là l'objet n'est pas encore enregistré en BDD
-    $em->persist($user);
-    $em->flush();
+    if (
+      !empty($firstNameUser)
+      && !empty($nameUser)
+      && !empty($userName)
+      && !empty($passwordUser)
+      && !empty($emailUser)
+      && !empty($birthDateUser)
+      && !empty($_FILES['file'])
+    ) {
+      $em->persist($user);
+      $em->flush();
+      echo $this->twig->render("contact/reussi.html.twig");
+    } else {
+      echo $this->twig->render("contact/contact.html.twig");
+    }
   }
 }
