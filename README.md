@@ -39,7 +39,6 @@ Nous avons réutiliser ce fichier pour créer une nouvelle méthode __addAvatar_
 * Date de naissance
 * Nom de l'image
 
-
 Grâce à la méthode __contact__, on va afficher le template twig contact avec le formulaire où l'on pourra rentrer ses informations (*_qui seront stockées dans les différentes variables_*) et choisir l'image à upload (*_qui sera stockée dans $_FILES puis triée dans le constructeur d'UploadFiles__* ).
 
 Une fois que le bouton "*Enregistrer*" est cliqué, nous allons vérifier si les champs sont remplis ou non. Si oui nous avons toutes les données nécessaires et elles seront envoyées à la base de données où elle seront stockées puis on affiche la page *reussi.html.twig* pour informer l'utilisateur que ses données ont bien étés sauvegardée, si non on renvoie sur la page du formulaire pour le remplir une nouvelle fois.
@@ -50,7 +49,13 @@ Dans le cas où le if est égal à true nous avons
 * Ce résultat en base de données 
 ![alt text](image_ReadMe/bdd.PNG)
 
-La route qui nous permets d'accéder au template twig est "/contact" avec la méthode POST.
+La route qui nous permets d'accéder au template twig est "/contact" avec la méthode POST et grâce à la méthode __contact__.
+
+<u>**_EmailController.php_**</u>
+
+Nous avons créer ce fichier pour pouvoir récupérer les données du formulaire de l'email grâce à la fonction __sendEmail__ et la méthode __POST__.
+
+La route qui nous permets d'accéder au template twig est "/email" grâce à la fonction __email__.
 
 ___
 ### Template twig
@@ -65,4 +70,10 @@ Le form ressemble donc à ceci
 
 Ce fichier est la vue qui nous sert de forulaire pour envoyer un email. Il contient un champ Email, Sujet et Message.
 
-Créateur : Wyvin Stryus, Schwaller Nadia, Chaudhry Sofia, Salvi Coline.
+Le formulaire pour l'envoie du mail ressemble à ceci
+![alt text](image_ReadMe/mail_web.PNG)
+Fait par 
+* Wyvin Stryus
+* Chaudhry Sofia
+* Schwaller Nadia
+* Salvi Coline.
