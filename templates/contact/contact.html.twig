@@ -12,37 +12,38 @@
   <form action="/addavatar" method="POST" enctype="multipart/form-data">
     <div>
       <label for="firstNameUser">Nom </label>
-      <input type="text" id="firstNameUser" name="firstNameUser" placeholder="exemple : Bob">
+      <input type="text" id="firstNameUser" name="firstNameUser" placeholder="exemple : Bob" required>
     </div>
     <div>
       <label for="nameUser">Prénom</label>
-      <input type="text" id="nameUser" name="nameUser" placeholder="exemple : Bobby">
+      <input type="text" id="nameUser" name="nameUser" placeholder="exemple : Bobby" required>
     </div>
     <div>
       <label for="userName">Pseudo</label>
-      <input type="text" id="userName" name="userName" placeholder="exemple : BobbyBob">
+      <input type="text" id="userName" name="userName" placeholder="exemple : BobbyBob" required>
     </div>
     <div>
       <label for="passwordUser">Mot de passe </label>
-      <input type="text" id="passwordUser" name="passwordUser" placeholder="exemple : azerty123">
+      <input type="password" id="passwordUser" name="passwordUser" placeholder="exemple : azerty123" required>
     </div>
-    <div>
+    <div class="emailInput">
       <label for="emailUser">E-mail </label>
-      <input type="text" id="emailUser" name="emailUser" placeholder="exemple : bob@bob.fr">
+      <input type="email" id="emailUser" name="emailUser" placeholder="exemple : bob@bob.fr"
+             pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{1,}([.][a-zA-Z]{1,}|[.][\w-]{1,}[.][a-zA-Z]{1,})$" required>
     </div>
     <div>
       <label for="birthDateUser">Date de naissance </label>
-      <input type="date" id="birthDateUser" name="birthDateUser" value="01-01-2000">
+      <input type="date" id="birthDateUser" name="birthDateUser" value="01-01-2000" required>
     </div>
     <div>
-      <label for="file">Fichier</label>
-      <input type="file" id="file" name="file">
+      <label class="customFile" for="file">Choisissez une image</label>
+      <input type="file" id="file" name="file" required accept=".jpg, .png, .jpeg">
     </div>
-    <button type="submit">Enregistrer</button>
+    <button type="submit">Envoyer</button>
   </form>
-
 </body>
 </html>
+
 <style>
   form
   {
@@ -50,7 +51,8 @@
   }
   div
   {
-    display: table-row;
+    display: flex;
+    flex-direction: column;
   }
   label,input
   {
@@ -59,6 +61,44 @@
   }
   label
   {
-    padding-right: 5px;
+    width: auto;
+  }
+  label:after
+  {
+    content: '*';
+    color: red;
+  }
+  input
+  {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 5px;
+  }
+  input[type=file]
+  {
+
+  }
+  button
+  {
+    border: 1px solid black;
+    width: auto;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+  button{
+    width: 150px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
+  .emailInput::after
+  {
+    content: 'Le format requis est example@example.com';
+    display: flex;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    color: darkred;
+
   }
 </style>

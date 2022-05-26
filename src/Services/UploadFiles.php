@@ -17,13 +17,29 @@ class UploadFiles
     $this->tmp_name = $imageFiles['tmp_name'];
     $this->error = $imageFiles['error'];
     $this->size = $imageFiles['size'];
-
   }
 
   public function upload()
   {
-    $dossier = 'public/img/';
-    move_uploaded_file($this->getTmp_name(), $dossier . $this->getName());
+    $dossier = '../public/img/';
+    if($this->verifyExtension($this->getType()))
+    {
+        move_uploaded_file($this->getTmp_name(), $dossier . $this->getName());
+    }
+  }
+
+  public function verifyExtension($extensionGiven)
+  {
+      $acceptedExtension = ["image/jpg", "image/png", "image/jpeg"];
+      $ext = strtolower($extensionGiven);
+      if(in_array($ext, $acceptedExtension))
+      {
+          return true;
+      }
+      else
+      {
+          return false;
+      }
   }
 
   /**

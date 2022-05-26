@@ -6,13 +6,14 @@ use App\Entity\User;
 use App\Routing\Attribute\Route;
 use DateTime;
 use Doctrine\ORM\EntityManager;
+use App\Services\UploadFiles;
 
 class IndexController extends AbstractController
 {
   #[Route(path: "/", name: 'index')]
   public function index(EntityManager $em)
   {
-    var_dump($_FILES['file']);
+//    var_dump($_FILES['file']);
     $user = new User();
 
     $file = ['name' => 'nomImg.png', 'type' => 'image/png', 'tmp_name' => 'C:\Windows\Temp\php9C6D.tmp', 'error' => 'error', 'size' => 1456];
@@ -47,6 +48,7 @@ class IndexController extends AbstractController
     $passwordUser = $_POST["passwordUser"];
     $emailUser = $_POST["emailUser"];
     $birthDateUser = date('Y-m-d', strtotime($_POST["birthDateUser"]));
+    $verifyUpload = new UploadFiles($_FILES['file']);
 
     $user = new User();
 
@@ -71,11 +73,19 @@ class IndexController extends AbstractController
       && !empty($birthDateUser)
       && !empty($_FILES['file'])
     ) {
-      $em->persist($user);
-      $em->flush();
-      echo $this->twig->render("contact/reussi.html.twig");
-    } else {
-      echo $this->twig->render("contact/contact.html.twig");
+        if($verifyUpload->verifyExtension($verifyUpload->getType()))
+        {
+            $em->persist($user);
+            $em->flush();
+            echo $this->twig->render("contact/reussi.html.twig");
+            var_dump($_FILES);
+            var_dump('Fichier ajouté');
+        }
     }
   }
+
+    private function addMessage(string $type, $message)
+    {
+        echo $message;
+    }
 }
