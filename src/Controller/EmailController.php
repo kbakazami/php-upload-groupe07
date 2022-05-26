@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Routing\Attribute\Route;
 use App\Services\Email;
+use App\Services\UploadFiles;
 
 class EmailController extends AbstractController
 {
@@ -20,9 +21,15 @@ class EmailController extends AbstractController
     $to = $_POST['email'];
     $subject = $_POST['subject'];
     $message = $_POST['message'];
+    $attachment = $_FILES['file'];
 
-    $mail = new Email($to, $subject, $message); 
-    $mail->sendEmail();
+    $mail = new Email($to, $subject, $message, $attachment);
+    $verifyUpload = new UploadFiles($_FILES['file']);
+    if($verifyUpload->verifyExtension($verifyUpload->getType()))
+    {
+        $mail->sendEmail();
+        var_dump('yes');
+    }
 
   }
 }

@@ -1,4 +1,3 @@
-IndexCoontroller
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,21 +10,25 @@ IndexCoontroller
 <h1>Envoyer un mail</h1>
 
 <form action="/sendmail" method="POST" enctype="multipart/form-data">
-	<div>
+	<div class="emailInput">
 		<label for="email">Destinataire</label>
-		<input type="mail" name="email">
+		<input type="email" id="email" name="email" placeholder="exemple : bob@bob.fr" required
+			   pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{1,}([.][a-zA-Z]{1,}|[.][\w-]{1,}[.][a-zA-Z]{1,})$">
 	</div>
 
 	<div>
 		<label for="subject">Sujet</label>
-		<input type="text" name="subject">
+		<input type="text" id="subject" name="subject" required placeholder="Un sujet extra !">
 	</div>
 	<div>
 		<label for="message">Message</label>
-		<textarea name="message"></textarea>
-
+		<textarea name="message" id="message" required placeholder="Un message extra !"></textarea>
 	</div>
-	<button type="submit">Enregistrer</button>
+	<div>
+		<label class="customFile" for="file">Choisissez une image</label>
+		<input type="file" id="file" name="file" required accept=".jpg, .png, .jpeg">
+	</div>
+	<button type="submit">Envoyer</button>
 </form>
 
 </body>
@@ -38,16 +41,50 @@ IndexCoontroller
 	}
 	div
 	{
-		display: table-row;
+		display: flex;
+		flex-direction: column;
 	}
-	label,input
+	label,input, textarea
 	{
 		display: table-cell;
 		margin-bottom: 10px;
 	}
 	label
 	{
-		padding-right: 5px;
+		width: auto;
+	}
+	label:after
+	{
+		content: '*';
+		color: red;
+	}
+	input,textarea
+	{
+		border: 1px solid black;
+		border-radius: 5px;
+		padding: 5px 5px;
+	}
+	button
+	{
+		border: 1px solid black;
+		width: auto;
+		border-radius: 5px;
+		padding: 5px;
+		cursor: pointer;
+	}
+	button{
+		width: 150px;
+		margin: auto;
+		display: flex;
+		justify-content: center;
+	}
+	.emailInput::after
+	{
+		content: 'Le format requis est example@example.com';
+		display: flex;
+		margin-top: -10px;
+		margin-bottom: 10px;
+		color: darkred;
+
 	}
 </style>
-
