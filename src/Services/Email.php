@@ -7,14 +7,14 @@ class Email
     private $email;
     private $subject;
     private $content;
-    private $attachment;
+    private $header;
 
-    public function __construct($email, $subject, $content, $attachment)
+    public function __construct($email, $subject, $content, $header)
     {
         $this->email = $email;
         $this->subject = $subject;
         $this->content = $content;
-        $this->attachment = $attachment;
+        $this->header = $header;
     }
 
     public function sendEmail()
@@ -23,7 +23,7 @@ class Email
             $this->getEmail(),
             $this->getSubject(),
             $this->getContent(),
-            $this->getAttachment()
+            $this->getHeader()
         );
 
     }
@@ -90,21 +90,21 @@ class Email
     }
 
     /**
-     * Get the value of the attachment
+     * Get the value of the header
      */
-    public function getAttachment()
+    public function getHeader()
     {
-        return $this->attachment;
+        return $this->header;
     }
 
     /**
-     * Set the value of the attachment
+     * Set the value of the header
      *
      * @return  self
      */
-    public function setAttachment($attachment)
+    public function setHeader($header)
     {
-        $this->attachment = $attachment;
+        $this->header = $header;
 
         return $this;
     }
