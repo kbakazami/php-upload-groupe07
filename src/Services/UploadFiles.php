@@ -30,7 +30,7 @@ class UploadFiles
 
   public function verifyExtension($extensionGiven)
   {
-      $acceptedExtension = ["image/jpg", "image/png", "image/jpeg"];
+      $acceptedExtension = ["image/jpg", "image/png", "image/jpeg", "application/pdf"];
       $ext = strtolower($extensionGiven);
       if(in_array($ext, $acceptedExtension))
       {
