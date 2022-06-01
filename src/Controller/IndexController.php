@@ -36,8 +36,6 @@ class IndexController extends AbstractController
 
     $user = new User();
 
-    $file = ['name' => 'nomImg.png', 'type' => 'image/png', 'tmp_name' => 'C:\Windows\Temp\php9C6D.tmp', 'error' => 'error', 'size' => 1456];
-
     $user->setName($firstNameUser)
       ->setFirstName($nameUser)
       ->setUsername($userName)
@@ -62,14 +60,8 @@ class IndexController extends AbstractController
             $em->persist($user);
             $em->flush();
             echo $this->twig->render("contact/reussi.html.twig");
-            var_dump($_FILES);
-            var_dump('Fichier ajouté');
         }
     }
   }
 
-    private function addMessage(string $type, $message)
-    {
-        echo $message;
-    }
 }
