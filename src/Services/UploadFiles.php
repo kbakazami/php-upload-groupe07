@@ -21,7 +21,7 @@ class UploadFiles
 
   public function upload()
   {
-    $dossier = '../public/img/';
+    $dossier = './public/img/';
     if($this->verifyExtension($this->getType()))
     {
         move_uploaded_file($this->getTmp_name(), $dossier . $this->getName());
