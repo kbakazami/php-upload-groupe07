@@ -59,7 +59,6 @@ class EmailController extends AbstractController
               if($mail)
               {
                   $mail->sendEmail();
-                  var_dump($mail);
                   echo $this->twig->render('mail/reussi.html.twig');
               }
           }
