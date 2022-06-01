@@ -27,7 +27,7 @@ Ce fichier contient
 * Le constructeur où l'on va initialiser les valeurs récupérées
 * La fonction ``sendEmail`` avec la fonction ``mail`` de PHP et les différents paramètres nécessaires à l'envoi d'un mail qui seront récupérées au préalable par les différents Getters et Setters
 
-Grâce à l'intercepteur de mail de Laragon nous avons pu tester cette fonction, on reçoit bien le dernier mail envoyé
+Grâce à l'intercepteur de mail de Laragon nous avons pu tester cette fonction, on reçoit bien le dernier mail envoyé, malheureusement l'affichage n'est pas possible et les mails n'arrivent pas à destination car ça peut vite devenir compliqué avec tout les services de mail qui existent
 ![alt text](image_ReadMe/mail.png)
 
 <u>**_IndexController.php_**</u>
