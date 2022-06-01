@@ -17,12 +17,13 @@ class EmailController extends AbstractController
   #[Route(path: "/sendmail", httpMethod: "POST", name: "sendmail")]
   public function sendEmail()
   {
+      $from = $_POST['from'];
       $to = $_POST['email'];
       $subject = $_POST['subject'];
       $message = $_POST['message'];
       $boundary = md5(rand());
 
-      $headers = 'From: <sofia.chaudhry@mail.ru>' ."\n" . 'Reply-To: <' . $to . '>';
+      $headers = 'From: <' . $from . '>' ."\n" . 'Reply-To: <' . $to . '>';
       $headers .= "MIME-VERSION: 1.0" . "\n";
       $headers .= 'Content-Type: multipart/mixed; boundary='.$boundary."\n";
 
@@ -45,7 +46,7 @@ class EmailController extends AbstractController
               $fileOpen = fopen($sourceFile, 'r');
               $fileContent = fread($fileOpen, $fileSize);
               $fileEncoded = chunk_split(base64_encode($fileContent));
-              $fileClose = fclose($fileOpen);
+              fclose($fileOpen);
 
               $email_message .= "\n" . "--" . $boundary . "\n";
               $email_message .= 'Content-Type:' .$fileType.';name="'.$fileName.'"'."\n";
@@ -58,6 +59,7 @@ class EmailController extends AbstractController
               if($mail)
               {
                   $mail->sendEmail();
+                  var_dump($mail);
                   echo $this->twig->render('mail/reussi.html.twig');
               }
           }
